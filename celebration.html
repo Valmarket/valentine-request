@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yay! 💖</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b0b0b;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+img {
+  max-width: 250px;
+  border-radius: 10px;
+}
+/* Fireworks animation using CSS particles */
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff2f92;
+  pointer-events: none;
+  opacity: 0.8;
+  animation: firework 1s linear forwards;
+}
+@keyframes firework {
+  0% { transform: translate(0,0) scale(1); opacity:1; }
+  100% { transform: translate(var(--dx), var(--dy)) scale(0.5); opacity:0; }
+}
+</style>
+</head>
+<body>
+
+<h1>Yay! I Can't Wait To See You 😻💘</h1>
+<img src="https://media.giphy.com/media/31lPv5L3aIvTi/giphy.gif" alt="Friends Excited GIF">
+
+<script>
+// Fireworks effect
+function createFirework() {
+  const count = 20;
+  for (let i=0; i<count; i++){
+    const particle = document.createElement("div");
+    particle.className = "particle";
+    const angle = Math.random() * 2 * Math.PI;
+    const distance = 50 + Math.random() * 50;
+    particle.style.setProperty('--dx', Math.cos(angle)*distance+'px');
+    particle.style.setProperty('--dy', Math.sin(angle)*distance+'px');
+    particle.style.background = ["#ff2f92","#ff69b4","#ffb6c1","#ff66cc"][Math.floor(Math.random()*4)];
+    particle.style.left = (window.innerWidth/2) + "px";
+    particle.style.top = (window.innerHeight/2) + "px";
+    document.body.appendChild(particle);
+    setTimeout(()=>particle.remove(), 1000);
+  }
+}
+
+// Launch fireworks every 500ms
+setInterval(createFirework, 500);
+</script>
+
+</body>
+</html>
