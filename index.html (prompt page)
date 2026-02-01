@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jamila, Will You Be My Valentine? 💖</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b0b0b;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  overflow: hidden;
+}
+.box {
+  position: relative;
+  max-width: 350px;
+  z-index: 10;
+}
+h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+p {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 20px;
+}
+button {
+  padding: 12px 24px;
+  margin: 5px;
+  border: none;
+  border-radius: 20px;
+  background: #ff2f92;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.2s;
+}
+.no-btn {
+  position: absolute;
+}
+.heart {
+  font-size: 60px;
+  animation: beat 1s infinite;
+  margin-bottom: 20px;
+}
+@keyframes beat {
+  50% { transform: scale(1.2); }
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+  <h1>Jamila, Will You Be My Valentine?</h1>
+  <div class="heart">💖</div>
+  <p>The No button seems a bit shy...</p>
+  <button id="yesButton" onclick="window.location='celebration.html'">Yes 💘</button>
+  <button id="noButton" class="no-btn">No 😅</button>
+</div>
+
+<script>
+const noButton = document.getElementById('noButton');
+
+function moveNoButton(e) {
+  // Only move if mouse/touch is very close
+  const rect = noButton.getBoundingClientRect();
+  const mouseX = e.clientX || e.touches[0].clientX;
+  const mouseY = e.clientY || e.touches[0].clientY;
+  const distance = Math.hypot(
+    mouseX - (rect.left + rect.width/2),
+    mouseY - (rect.top + rect.height/2)
+  );
+
+  if (distance < 80) { // trigger movement only when close
+    const x = Math.random() * (window.innerWidth - rect.width);
+    const y = Math.random() * (window.innerHeight - rect.height);
+    noButton.style.left = x + 'px';
+    noButton.style.top = y + 'px';
+  }
+}
+
+noButton.addEventListener('mousemove', moveNoButton);
+noButton.addEventListener('touchmove', moveNoButton);
+</script>
+
+</body>
+</html>
